@@ -5,7 +5,7 @@
   }
 
   body{
-    background: url(../imagenes/nuevo.png)no-repeat center center fixed;
+    background: url(../images/Material-Backgrounds-02-1920-x-1080.png) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -98,6 +98,7 @@
     margin:  auto;
     margin-top: 20px;
     margin-bottom: -20px;
+   
     
   
   }
@@ -113,23 +114,15 @@
 
   }
 
-  .form-group#nombre-group::before{
-
-      content: "\f573";
-     
-  }
+ 
 
   .form-group#usuario-group::before{
 
     content: "\f007";
+    
    
 }
 
-.form-group#correo-group::before{
-
-  content: "\f0e0";
-  
-}
 
 .form-group#contraseña-group::before{
 
