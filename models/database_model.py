@@ -1,39 +1,51 @@
 import pymysql 
 
 class database:
+    #Este es nuestro constructor de la base de datos, pertence a la clase database
 
     def __init__(self, host, user, password, database):
         self.host = host
         self.user = user
         self.password = password
         self.database = database
+        self.conn = ''
+    #Esta funcion es la que hace la conexión con la base de datos y es la que corobora , pertence a la clase database
 
     def connection(self): 
-        conn = pymysql.connect(host= self.host,
+        self.conn = pymysql.connect(host= self.host,
                                user= self.user,
                                password= self.password,
-                               database= self.database)
-
-        if conn:
-            return conn
-            
+                               database= self.database,
+                               cursorclass=pymysql.cursors.DictCursor)
+        if self.conn:
+            return self.conn  
         else:
-            return 'No jala' 
-'''
-    ssh conection module
-    This module help us to bring the file that containt the paths that we needed
-    to can connect to the tapeserver.
-        -Paths to get the log files: this  containt the exactly path's logs file
-        ubication.
-        -Paths to get the teststat file: This file should containt the exactly
-        teststat file ubication.
-    PARAMETERS:
-        Mandatory:
-            - file_to_search: (string) The file name that is give to the file
-                            that contain each one of the paths.
-            -local_dest: (string) The local path to receive the file(s)
-            -cred:(string)  Access Credentials from the VCAP_SERVICES
-    '''
+            return 'No fucniona la conec' 
+    # Esta funcion, utilizamos los parametros que tenemos (usuario, contraseña) mediante el query
+    #que llenamos desde nuesto archivo login.html 
+    def execute_query(self, query):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute(query)
+                rows = cur.fetchall() 
+                
+                #for row in rows:
+                   # print(row)
+                #rows=  rows[0]
+                return rows
+        except:
+            print('Fallo el query')
+        
+
+        
+
+
+
+
+
+
+
+
                                 
 
     
